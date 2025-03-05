@@ -1,4 +1,5 @@
 from ml_spbu.homework_2.annotations import CallableMetric, Point
+from ml_spbu.homework_2.exceptions import NotFittedError
 from ml_spbu.homework_2.KDTree.kd_tree import KDTree
 
 
@@ -13,6 +14,9 @@ class KNNClassifier:
         self._labels = {x: y for x, y in zip(X, Y)}
 
     def predict_proba(self, X: list[Point]) -> list[tuple[float, float]]:
+        if not hasattr(self, "_kd_tree"):
+            raise NotFittedError()
+
         output = []
         results = self._kd_tree.query(X, self._k)
 

@@ -3,6 +3,7 @@ import pytest
 from ml_spbu.homework_2.KNNClassifier.knn_classifier import KNNClassifier
 from ml_spbu.homework_2.annotations import Point
 from ml_spbu.homework_2.KDTree.kd_tree import KDTree
+from ml_spbu.homework_2.exceptions import NotFittedError
 
 
 def euclidean_distance(point1: Point, point2: Point) -> float:
@@ -56,13 +57,11 @@ class TestKNNClassifier:
 
     def test_predict_proba_before_fit(self):
         knn_classifier = KNNClassifier(k=3, leaf_size=2, metric=euclidean_distance)
-        with pytest.raises(AttributeError):
+        with pytest.raises(NotFittedError):
             knn_classifier.predict_proba([(1, 1)])
 
     def test_predict_before_fit(self):
         knn_classifier = KNNClassifier(k=3, leaf_size=2, metric=euclidean_distance)
         X_predict = [(1, 1)]
-        with pytest.raises(
-            AttributeError
-        ):  # Or perhaps a different error depending on implementation if _kd_tree is accessed before fit.
+        with pytest.raises(NotFittedError):
             knn_classifier.predict(X_predict)
