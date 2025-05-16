@@ -1,21 +1,28 @@
-[project]
+[tool.poetry]
 name = "ml_spbu"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "iraedeus",email = "dtotjmyanin@mail.ru"}
-]
-license = {text = "MIT"}
+authors = ["iraedeus <dtotjmyanin@mail.ru>"]
+license = "MIT"
 readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-    "jupyterlab (>=4.3.5,<5.0.0)",
-    "numpy (>=2.2.3,<3.0.0)",
-    "pandas (>=2.2.3,<3.0.0)",
-    "matplotlib (>=3.10.0,<4.0.0)",
-    "seaborn (>=0.13.2,<0.14.0)",
-    "scipy (>=1.15.2,<2.0.0)"
-]
+
+
+[tool.poetry.dependencies]
+python = ">=3.13"
+numpy = ">=2.2.3,<3.0.0"
+pandas = ">=2.2.3,<3.0.0"
+matplotlib = ">=3.10.0,<4.0.0"
+seaborn = ">=0.13.2,<0.14.0"
+scipy = ">=1.15.2,<2.0.0"
+scikit-learn = "^1.6.1"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.9.7"
+mypy = "^1.15.0"
+pytest = "^8.3.4"
+hypothesis = "^6.127.2"
+jupyterlab = ">=4.3.5,<5.0.0"
 
 
 [tool.ruff]
@@ -36,12 +43,6 @@ ignore = ["PLR0913"]
 [tool.mypy]
 ignore_missing_imports = true
 
-
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.9.7"
-mypy = "^1.15.0"
-pytest = "^8.3.4"
-hypothesis = "^6.127.2"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
