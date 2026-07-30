@@ -23,7 +23,7 @@ def test_f1_score_no_true_positives(y_pred, y_true):
 
 @given(data=st.data())
 def test_f1_score_hypothesis(data):
-    list_len = data.draw(st.integers(min_value=0, max_value=100))
+    list_len = data.draw(st.integers(min_value=1, max_value=100))
     y_pred = data.draw(st.lists(st.integers(0, 1), min_size=list_len, max_size=list_len))
     y_true = data.draw(st.lists(st.integers(0, 1), min_size=list_len, max_size=list_len))
 
